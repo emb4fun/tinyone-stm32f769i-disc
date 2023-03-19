@@ -1,0 +1,132 @@
+<!DOCTYPE CrossStudio_Project_File>
+<solution Name="stm32769disc-boot-sd" target="8" version="2">
+  <configuration Name="Debug" hidden="Yes" />
+  <configuration Name="Flash" hidden="Yes" />
+  <configuration Name="Flash Debug" inherited_configurations="Flash;Debug" />
+  <configuration
+    Name="Flash Release"
+    inherited_configurations="Flash;Release" />
+  <configuration Name="RAM" hidden="Yes" />
+  <configuration Name="RAM Debug" inherited_configurations="RAM;Debug" />
+  <configuration Name="RAM Release" inherited_configurations="RAM;Release" />
+  <configuration Name="Release" hidden="Yes" />
+  <project Name="stm32769disc-boot-sd">
+    <configuration
+      Name="Common"
+      Placement="Flash"
+      Target="STM32F769NI"
+      arm_architecture="v7EM"
+      arm_core_type="Cortex-M7"
+      arm_endian="Little"
+      arm_fp_abi="SoftFP"
+      arm_fpu_type="FPv5-SP-D16"
+      arm_interwork="No"
+      arm_linker_heap_size="16"
+      arm_linker_process_stack_size="512"
+      arm_linker_stack_size="512"
+      arm_simulator_memory_simulation_parameter="ROM;0x00200000;0x00200000;ROM;0x08000000;0x00200000;RAM;0x20000000;0x00020000;RAM;0x20020000;0x00060000"
+      arm_target_debug_interface_type="ADIv5"
+      arm_target_device_name="STM32F769NI"
+      arm_target_interface_type="SWD"
+      build_intermediate_directory="$(Configuration)"
+      build_output_directory="$(Configuration)"
+      c_preprocessor_definitions="STM32F769xx;__STM32F7xx_FAMILY;__STM32F769_SUBFAMILY;ARM_MATH_CM7;INITIALIZE_STACK;RTOS_TCTS;HSE_VALUE=25000000;USE_HAL_DRIVER;USE_BOARD_MB1225"
+      c_user_include_directories="..\\library\\tcts\\inc;..\\library\\tal_mb1225\\board\\mb1225\\inc;..\\library\\tal_mb1225\\core\\inc;..\\library\\tal_mb1225\\cpu\\st\\stm32f7xx\\cmsis\\core;..\\library\\tal_mb1225\\cpu\\st\\stm32f7xx\\cmsis\\device\\stm32f7xx;..\\library\\tal_mb1225\\cpu\\st\\stm32f7xx\\inc;..\\library\\tal_mb1225\\cpu\\st\\stm32f7xx\\STM32F7_Cube\\v1150\\hal\\inc;..\\library\\adler32;..\\library\\fatfs\\src;..\\inc"
+      debug_register_definition_file="$(ProjectDir)/STM32F7x9_v1r2_Registers.xml"
+      debug_target_connection="J-Link"
+      gcc_entry_point="Reset_Handler"
+      linker_memory_map_file="$(ProjectDir)/STM32F769NI_MemoryMap.xml"
+      linker_printf_fmt_level="long long"
+      linker_printf_fp_enabled="Double"
+      linker_printf_width_precision_supported="Yes"
+      linker_scanf_character_group_matching_enabled="Yes"
+      linker_scanf_fmt_level="long long"
+      linker_scanf_fp_enabled="Yes"
+      linker_section_placement_file="$(ProjectDir)/flash_placement.xml"
+      macros="DeviceHeaderFile=$(PackagesDir)/STM32F7xx/CMSIS/Device/Include/stm32f7xx.h;DeviceLibraryIdentifier=;DeviceSystemFile=$(PackagesDir)/STM32F7xx/CMSIS/Device/Source/system_stm32f7xx.c;DeviceVectorsFile=$(PackagesDir)/STM32F7xx/Source/STM32F7x9_v1r2_Vectors.s;DeviceFamily=STM32F7xx;DeviceSubFamily=STM32F769;Target=STM32F769NI;Placement=Flash"
+      package_dependencies="STM32F7xx"
+      project_directory=""
+      project_type="Executable"
+      target_reset_script="Reset();"
+      target_script_file="$(ProjectDir)/STM32F7xx_Target.js"
+      target_trace_initialize_script="EnableTrace(&quot;$(TraceInterfaceType)&quot;)" />
+    <configuration
+      Name="Flash"
+      c_preprocessor_definitions="__FLASH__;DATA_IN_ExtSDRAM" />
+    <configuration Name="Flash Release" linker_output_format="hex" />
+    <configuration
+      Name="RAM"
+      c_preprocessor_definitions="__RAM__;DATA_IN_ExtSDRAM"
+      linker_section_placement_file="$(ProjectDir)/ram_placement.xml" />
+    <configuration
+      Name="Release"
+      gcc_optimization_level="Level 3 for more speed" />
+    <folder Name="Source Files">
+      <configuration Name="Common" filter="c;cpp;cxx;cc;h;s;asm;inc" />
+      <folder Name="library">
+        <folder Name="adler32">
+          <folder Name="fatfs" />
+          <file file_name="../library/adler32/adler32.c" />
+          <file file_name="../library/fatfs/src/ff.c" />
+          <file file_name="../library/fatfs/src/ffunicode.c" />
+        </folder>
+        <folder Name="tal">
+          <folder Name="board">
+            <file file_name="../library/tal_mb1225/board/mb1225/src/fatfs_diskio.c" />
+            <file file_name="../library/tal_mb1225/board/mb1225/src/stm32f769i_discovery_sd.c" />
+            <file file_name="../library/tal_mb1225/board/mb1225/src/talboard.c" />
+            <file file_name="../library/tal_mb1225/board/mb1225/src/talgpio.c" />
+            <file file_name="../library/tal_mb1225/board/mb1225/src/talled.c" />
+          </folder>
+          <folder Name="core">
+            <file file_name="../library/tal_mb1225/core/src/tal.c" />
+            <file file_name="../library/tal_mb1225/core/src/talcom.c" />
+            <file file_name="../library/tal_mb1225/core/src/taldebug.c" />
+            <file file_name="../library/tal_mb1225/core/src/talmem.c" />
+            <file file_name="../library/tal_mb1225/core/src/talmisc.c" />
+          </folder>
+          <folder Name="cpu">
+            <folder Name="cmsis">
+              <file file_name="../library/tal_mb1225/cpu/st/stm32f7xx/cmsis/device/stm32f7xx/system_stm32f7xx_mb1225.c">
+                <configuration
+                  Name="Common"
+                  default_code_section=".init"
+                  default_const_section=".init_rodata" />
+              </file>
+            </folder>
+            <folder Name="cube">
+              <file file_name="../library/tal_mb1225/cpu/st/stm32f7xx/STM32F7_Cube/v1150/hal/src/stm32f7xx_hal.c" />
+              <file file_name="../library/tal_mb1225/cpu/st/stm32f7xx/STM32F7_Cube/v1150/hal/src/stm32f7xx_hal_cortex.c" />
+              <file file_name="../library/tal_mb1225/cpu/st/stm32f7xx/STM32F7_Cube/v1150/hal/src/stm32f7xx_hal_dma.c" />
+              <file file_name="../library/tal_mb1225/cpu/st/stm32f7xx/STM32F7_Cube/v1150/hal/src/stm32f7xx_hal_gpio.c" />
+              <file file_name="../library/tal_mb1225/cpu/st/stm32f7xx/STM32F7_Cube/v1150/hal/src/stm32f7xx_hal_iwdg.c" />
+              <file file_name="../library/tal_mb1225/cpu/st/stm32f7xx/STM32F7_Cube/v1150/hal/src/stm32f7xx_hal_pwr_ex.c" />
+              <file file_name="../library/tal_mb1225/cpu/st/stm32f7xx/STM32F7_Cube/v1150/hal/src/stm32f7xx_hal_rcc.c" />
+              <file file_name="../library/tal_mb1225/cpu/st/stm32f7xx/STM32F7_Cube/v1150/hal/src/stm32f7xx_hal_rng.c" />
+              <file file_name="../library/tal_mb1225/cpu/st/stm32f7xx/STM32F7_Cube/v1150/hal/src/stm32f7xx_hal_sd.c" />
+              <file file_name="../library/tal_mb1225/cpu/st/stm32f7xx/STM32F7_Cube/v1150/hal/src/stm32f7xx_hal_sdram.c" />
+              <file file_name="../library/tal_mb1225/cpu/st/stm32f7xx/STM32F7_Cube/v1150/hal/src/stm32f7xx_ll_fmc.c" />
+              <file file_name="../library/tal_mb1225/cpu/st/stm32f7xx/STM32F7_Cube/v1150/hal/src/stm32f7xx_ll_sdmmc.c" />
+            </folder>
+            <file file_name="../library/tal_mb1225/cpu/st/stm32f7xx/src/talcpu.c" />
+            <file file_name="../library/tal_mb1225/cpu/st/stm32f7xx/src/talcpu_com.c" />
+          </folder>
+        </folder>
+        <folder Name="tcts">
+          <file file_name="../library/tcts/src/tcts.c" />
+        </folder>
+      </folder>
+      <folder Name="src">
+        <file file_name="../src/main.c" />
+        <file file_name="../src/terminal.c" />
+        <file file_name="../src/xmempool.c" />
+      </folder>
+    </folder>
+    <folder Name="System Files">
+      <file file_name="SEGGER_RTL_Syscalls_SES_none.c" />
+      <file file_name="STM32F7x9_v1r2_Vectors.s" />
+      <file file_name="STM32F7xx_Startup.s" />
+      <file file_name="thumb_crt0.s" />
+    </folder>
+  </project>
+</solution>
