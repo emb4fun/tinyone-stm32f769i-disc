@@ -54,7 +54,7 @@
       linker_scanf_character_group_matching_enabled="Yes"
       linker_scanf_fmt_level="long long"
       linker_scanf_fp_enabled="Yes"
-      linker_section_placement_file="$(ProjectDir)/flash_placement.xml"
+      linker_section_placement_file="$(ProjectDir)/placement_flash.xml"
       macros="DeviceHeaderFile=$(PackagesDir)/STM32F7xx/CMSIS/Device/Include/stm32f7xx.h;DeviceLibraryIdentifier=;DeviceSystemFile=$(PackagesDir)/STM32F7xx/CMSIS/Device/Source/system_stm32f7xx.c;DeviceVectorsFile=$(PackagesDir)/STM32F7xx/Source/STM32F7x9_v1r2_Vectors.s;DeviceFamily=STM32F7xx;DeviceSubFamily=STM32F769;Target=STM32F769NI;Placement=Flash"
       package_dependencies="STM32F7xx"
       project_directory=""
@@ -62,20 +62,25 @@
       target_reset_script="Reset();"
       target_script_file="$(ProjectDir)/STM32F7xx_Target.js"
       target_trace_initialize_script="EnableTrace(&quot;$(TraceInterfaceType)&quot;)" />
-    <configuration Name="Debug" c_preprocessor_definitions="DEBUG=1" />
+    <configuration
+      Name="Debug"
+      c_preprocessor_definitions="__DEBUG__;DEBUG=1" />
     <configuration
       Name="Flash"
       c_preprocessor_definitions="__FLASH__;DATA_IN_ExtSDRAM" />
-    <configuration Name="Release" gcc_optimization_level="Level 3" />
+    <configuration
+      Name="Release"
+      c_preprocessor_definitions="__RELEASE__"
+      gcc_optimization_level="Level 3" />
     <configuration
       Name="SDRAM"
       c_preprocessor_definitions="__SDRAM__"
-      linker_section_placement_file="$(ProjectDir)/ram_sdram_placement.xml"
+      linker_section_placement_file="$(ProjectDir)/placement_ram_sdram.xml"
       target_reset_script="SDRAM_Reset()" />
     <configuration
       Name="SDRAM Boot"
       c_preprocessor_definitions="__SDRAM__"
-      linker_section_placement_file="$(ProjectDir)/ram_sdram_boot_placement.xml" />
+      linker_section_placement_file="$(ProjectDir)/placement_ram_sdram_boot.xml" />
     <configuration
       Name="SDRAM Boot Release"
       c_preprocessor_definitions="__BOOT__;NO_SYSTEM_INIT"
@@ -120,6 +125,7 @@
             <file file_name="../common/library/ipweb/src/web_cgi.c" />
             <file file_name="../common/library/ipweb/src/web_json.c" />
             <file file_name="../common/library/ipweb/src/web_login.c" />
+            <file file_name="../common/library/ipweb/src/web_login_dummy.c" />
             <file file_name="../common/library/ipweb/src/web_sid.c" />
             <file file_name="../common/library/ipweb/src/web_sid_dummy.c" />
             <file file_name="../common/library/ipweb/src/web_ssi.c" />
@@ -183,7 +189,10 @@
             <file file_name="../common/library/mbedtls/library/asn1write.c" />
             <file file_name="../common/library/mbedtls/library/base64.c" />
             <file file_name="../common/library/mbedtls/library/bignum.c" />
+            <file file_name="../common/library/mbedtls/library/bignum_core.c" />
             <file file_name="../common/library/mbedtls/library/ccm.c" />
+            <file file_name="../common/library/mbedtls/library/chacha20.c" />
+            <file file_name="../common/library/mbedtls/library/chachapoly.c" />
             <file file_name="../common/library/mbedtls/library/cipher.c" />
             <file file_name="../common/library/mbedtls/library/cipher_wrap.c" />
             <file file_name="../common/library/mbedtls/library/constant_time.c" />
@@ -197,6 +206,7 @@
             <file file_name="../common/library/mbedtls/library/gcm.c" />
             <file file_name="../common/library/mbedtls/library/hmac_drbg.c" />
             <file file_name="../common/library/mbedtls/library/md.c" />
+            <file file_name="../common/library/mbedtls/library/nist_kw.c" />
             <file file_name="../common/library/mbedtls/library/oid.c" />
             <file file_name="../common/library/mbedtls/library/pem.c" />
             <file file_name="../common/library/mbedtls/library/pk.c" />
@@ -207,16 +217,32 @@
             <file file_name="../common/library/mbedtls/library/pkwrite.c" />
             <file file_name="../common/library/mbedtls/library/platform.c" />
             <file file_name="../common/library/mbedtls/library/platform_util.c" />
+            <file file_name="../common/library/mbedtls/library/poly1305.c" />
+            <file file_name="../common/library/mbedtls/library/psa_crypto.c" />
+            <file file_name="../common/library/mbedtls/library/psa_crypto_cipher.c" />
+            <file file_name="../common/library/mbedtls/library/psa_crypto_client.c" />
+            <file file_name="../common/library/mbedtls/library/psa_crypto_driver_wrappers_no_static.c" />
+            <file file_name="../common/library/mbedtls/library/psa_crypto_ecp.c" />
+            <file file_name="../common/library/mbedtls/library/psa_crypto_hash.c" />
+            <file file_name="../common/library/mbedtls/library/psa_crypto_mac.c" />
+            <file file_name="../common/library/mbedtls/library/psa_crypto_slot_management.c" />
+            <file file_name="../common/library/mbedtls/library/psa_util.c" />
             <file file_name="../common/library/mbedtls/library/sha1.c" />
             <file file_name="../common/library/mbedtls/library/sha256.c" />
+            <file file_name="../common/library/mbedtls/library/sha512.c" />
             <file file_name="../common/library/mbedtls/library/ssl_cache.c" />
             <file file_name="../common/library/mbedtls/library/ssl_ciphersuites.c" />
-            <file file_name="../common/library/mbedtls/library/ssl_cli.c" />
+            <file file_name="../common/library/mbedtls/library/ssl_client.c" />
             <file file_name="../common/library/mbedtls/library/ssl_cookie.c" />
             <file file_name="../common/library/mbedtls/library/ssl_msg.c" />
-            <file file_name="../common/library/mbedtls/library/ssl_srv.c" />
             <file file_name="../common/library/mbedtls/library/ssl_ticket.c" />
             <file file_name="../common/library/mbedtls/library/ssl_tls.c" />
+            <file file_name="../common/library/mbedtls/library/ssl_tls12_client.c" />
+            <file file_name="../common/library/mbedtls/library/ssl_tls12_server.c" />
+            <file file_name="../common/library/mbedtls/library/ssl_tls13_client.c" />
+            <file file_name="../common/library/mbedtls/library/ssl_tls13_generic.c" />
+            <file file_name="../common/library/mbedtls/library/ssl_tls13_keys.c" />
+            <file file_name="../common/library/mbedtls/library/ssl_tls13_server.c" />
             <file file_name="../common/library/mbedtls/library/x509.c" />
             <file file_name="../common/library/mbedtls/library/x509_create.c" />
             <file file_name="../common/library/mbedtls/library/x509_crl.c" />
@@ -312,6 +338,7 @@
         </folder>
         <folder Name="src">
           <file file_name="../common/src/cert.c" />
+          <file file_name="../common/src/elca_client.c" />
           <file file_name="../common/src/etc.c" />
           <file file_name="../common/src/fs.c" />
           <file file_name="../common/src/iperf.c" />
@@ -325,7 +352,6 @@
         </folder>
       </folder>
       <folder Name="src">
-        <file file_name="../src/elca_client.c" />
         <file file_name="../src/main.c" />
         <file file_name="../src/xmempool.c" />
       </folder>

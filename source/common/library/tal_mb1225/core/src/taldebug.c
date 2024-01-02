@@ -118,7 +118,8 @@ void TAL_FATAL (const char *func, const char *file, int line, const char *expect
    else
    {
       term_printf("%s:%d: Failed: in %s\n", file, line, func);
-   }   
+   }  
+   
    while (1)
    {
       __asm__ ("nop");
@@ -158,7 +159,7 @@ void tal_Debug (uint32_t dMask, const char *fmt, ...)
       /* Get current time */
       Time = OS_TimeGet();
       
-      n = snprintf(DebugBuffer, sizeof(DebugBuffer), "%d.%03d ",
+      n = snprintf(DebugBuffer, sizeof(DebugBuffer), "%ld.%03ld ",
                    Time/1000, Time%1000);
 
       va_start(ap, fmt);

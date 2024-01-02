@@ -2,32 +2,32 @@
 *  Copyright (c) 2022 by Michael Fischer (www.emb4fun.de).
 *  All rights reserved.
 *
-*  Redistribution and use in source and binary forms, with or without 
-*  modification, are permitted provided that the following conditions 
+*  Redistribution and use in source and binary forms, with or without
+*  modification, are permitted provided that the following conditions
 *  are met:
-*  
-*  1. Redistributions of source code must retain the above copyright 
+*
+*  1. Redistributions of source code must retain the above copyright
 *     notice, this list of conditions and the following disclaimer.
 *
 *  2. Redistributions in binary form must reproduce the above copyright
-*     notice, this list of conditions and the following disclaimer in the 
+*     notice, this list of conditions and the following disclaimer in the
 *     documentation and/or other materials provided with the distribution.
 *
-*  3. Neither the name of the author nor the names of its contributors may 
-*     be used to endorse or promote products derived from this software 
+*  3. Neither the name of the author nor the names of its contributors may
+*     be used to endorse or promote products derived from this software
 *     without specific prior written permission.
 *
-*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
-*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
-*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
-*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL 
-*  THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
-*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
-*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS 
-*  OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED 
-*  AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, 
-*  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF 
-*  THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF 
+*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+*  THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS
+*  OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+*  AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+*  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
+*  THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 *  SUCH DAMAGE.
 *
 ***************************************************************************
@@ -58,7 +58,7 @@
 /*  All Structures and Common Constants                                  */
 /*=======================================================================*/
 
-#define LOGIN_OK              0  
+#define LOGIN_OK              0
 #define LOGIN_ERR_USER_PASS   -1
 #define LOGIN_ERR_BLOCKED     -2
 /* The lines above must not changes */
@@ -89,7 +89,7 @@
 static void JSONSendError (HTTPD_SESSION *hs, int nError)
 {
    s_puts("{", hs->s_stream);
-   
+
    if (0 == nError)
    {
       s_puts("\"err\":0,\"msg\":\"none\"", hs->s_stream);
@@ -120,7 +120,7 @@ static int sys_login_init (HTTPD_SESSION *hs)
    else
    {
       s_printf(hs->s_stream, "1");
-   }   
+   }
 
    s_flush(hs->s_stream);
 
@@ -143,7 +143,7 @@ static int sys_login_blocked (HTTPD_SESSION *hs)
    else
    {
       s_printf(hs->s_stream, "1");
-   }   
+   }
 
    s_flush(hs->s_stream);
 
@@ -160,7 +160,7 @@ static int sys_login_blocked (HTTPD_SESSION *hs)
 static int sys_login_blocked_time (HTTPD_SESSION *hs)
 {
    s_printf(hs->s_stream, "%d", WebSidLoginBlockedTime());
-   
+
    s_flush(hs->s_stream);
 
    return(0);
@@ -183,7 +183,7 @@ static int sys_login_user (HTTPD_SESSION *hs)
    {
       s_printf(hs->s_stream, "???");   /*lint !e585*/
    }
-   
+
    s_flush(hs->s_stream);
 
    return(0);
@@ -199,7 +199,7 @@ static int sys_login_user (HTTPD_SESSION *hs)
 static int sys_nonce (HTTPD_SESSION *hs)
 {
    char *pNonce;
-   
+
    pNonce = WebSidCreateNonce(hs);
    if (pNonce != NULL)
    {
@@ -208,8 +208,8 @@ static int sys_nonce (HTTPD_SESSION *hs)
    else
    {
       s_printf(hs->s_stream, "00000000");
-   } 
-   
+   }
+
    s_flush(hs->s_stream);
 
    return(0);
@@ -225,7 +225,7 @@ static int sys_nonce (HTTPD_SESSION *hs)
 static int sys_logout_sec (HTTPD_SESSION *hs)
 {
    uint32_t dTime = WebSidLogoutTime(hs);
-   
+
    s_printf(hs->s_stream, "%d", dTime);
    s_flush(hs->s_stream);
 
@@ -244,7 +244,7 @@ static const SSI_EXT_LIST_ENTRY SSIList[] =
    { "sys_login_user",           sys_login_user         },
    { "sys_nonce",                sys_nonce              },
    { "sys_logout_sec",           sys_logout_sec         },
-   
+
    {NULL, NULL}
 };
 
@@ -264,8 +264,6 @@ static const SSI_EXT_LIST_ENTRY SSIList[] =
 void IP_WEBS_LoginInit (void)
 {
    IP_WEBS_SSIListAdd((SSI_EXT_LIST_ENTRY*)SSIList);
-   
-   WebUserInit();
 
 } /* IP_WEBS_LoginInit */
 

@@ -412,6 +412,9 @@ static void MEMAdd (tal_mem_id ID, void *pBuffer, uint32_t dSize)
       dRest  = dSize % MEM_ALIGN;
       dSize -= dRest;
 
+      /* Clear data first */
+      memset((void*)dAddress, 0x00, dSize);
+
       MemList[ID].dSize += dSize;
    
       pMem = (mem_hdr_t*)dAddress;
@@ -478,7 +481,7 @@ void tal_MEMInit (void)
    /* Get memory pointer */ 
    dAddr = (uint32_t)&TAL_HEAP_MEM2_START;
    dSize = ((uint32_t)(&TAL_HEAP_MEM2_END) - (uint32_t)(&TAL_HEAP_MEM2_START)) - 1;
-   
+
    MEMAdd(XM_ID_HEAP, (uint8_t*)dAddr, dSize);
 #endif   
    
