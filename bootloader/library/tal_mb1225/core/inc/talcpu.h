@@ -51,7 +51,7 @@
 /*
  * Check for Cortex-M and Cortex-M0 style CPU
  */
-#if defined(__ARM_ARCH_7EM__) || defined(__ARM_ARCH_7M__) || defined(__ARM_ARCH_6M__)
+#if defined(__ARM_ARCH_7EM__) || defined(__ARM_ARCH_7M__) || defined(__ARM_ARCH_6M__) || defined(__ARM_ARCH_8M_MAINLINE__)
 #include "talcpu_cm.h"
 #endif
 

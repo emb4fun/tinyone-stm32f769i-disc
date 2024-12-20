@@ -1,5 +1,5 @@
 /**************************************************************************
-*  Copyright (c) 2019 by Michael Fischer (www.emb4fun.de).
+*  Copyright (c) 2019-2024 by Michael Fischer (www.emb4fun.de).
 *  All rights reserved.
 *
 *  Redistribution and use in source and binary forms, with or without 
@@ -161,9 +161,9 @@ void etc_Init (void)
     */
    memset(IPAddrTable, 0x00, sizeof(IPAddrTable));
     
-   nDHCPIsUsed = (int)ini_getl("network", "dhcp",  ETC_DEFAULT_IP_DHCP, ETC_CONFIG_FILE);
+   nDHCPIsUsed = (int)ini_getl("network", "dhcp", ETC_DEFAULT_IP_DHCP, ETC_CONFIG_FILE);
    nTNPIsES    = (int)ini_getl("network", "tnpes", ETC_DEFAULT_IP_TNP,  ETC_CONFIG_FILE);
-   nMDNSIsUsed = (int)ini_getl("network", "mdns",  ETC_DEFAULT_IP_MDNS, ETC_CONFIG_FILE);
+   nMDNSIsUsed = (int)ini_getl("network", "mdns", ETC_DEFAULT_IP_MDNS, ETC_CONFIG_FILE);
 
    ini_gets("network", "ip", ETC_DEFAULT_IP_ADDR, String, sizeof(String), ETC_CONFIG_FILE);
    IPAddrTable[ETC_IP_ADDR] = atoh(String);
@@ -210,9 +210,9 @@ void etc_Init (void)
    nvm_IPGet(&IP);
    if (IP.dUse & NVM_IP_USE_ENABLE)
    {
-      nDHCPIsUsed = (IP.dUse & NVM_IP_USE_DHCP)  ? 1 : 0;
+      nDHCPIsUsed = (IP.dUse & NVM_IP_USE_DHCP) ? 1 : 0;
       nTNPIsES    = (IP.dUse & NVM_IP_USE_TNPES) ? 1 : 0;
-      nMDNSIsUsed = (IP.dUse & NVM_IP_USE_MDNS)  ? 1 : 0;    
+      nMDNSIsUsed = (IP.dUse & NVM_IP_USE_MDNS) ? 1 : 0;    
       
       IPAddrTable[ETC_IP_ADDR]   = IP.dIPAddr;
       IPAddrTable[ETC_IP_MASK]   = IP.dNETMask;

@@ -242,7 +242,7 @@ void tal_CPUInit (void)
       dHiResPeriod16 = dHiResPeriod / 16;
 
       /* Configure Priority Grouping (core_cm4.h) */
-      NVIC_SetPriorityGrouping(7);
+      NVIC_SetPriorityGrouping(0);
 
       /* System configuration controller clock enable */
       RCC->APB2ENR |= RCC_APB2ENR_SYSCFGEN;
@@ -307,6 +307,9 @@ void tal_CPUIrqDisable (int IRQ)
 /*************************************************************************/
 void tal_CPUIrqDisableAll (void)
 {
+   /*lint +rw(_to_semi) */
+   /*lint -d__disable_irq=_to_semi */
+
    __disable_irq();
 
 } /* tal_CPUIrqDisableAll */

@@ -24,6 +24,10 @@
   <ProjectSessionItem path="stm32769disc-boot-sd"/>
   <ProjectSessionItem path="stm32769disc-boot-sd;stm32769disc-boot-sd"/>
   <ProjectSessionItem path="stm32769disc-boot-sd;stm32769disc-boot-sd;Source Files"/>
+  <ProjectSessionItem path="stm32769disc-boot-sd;stm32769disc-boot-sd;Source Files;library"/>
+  <ProjectSessionItem path="stm32769disc-boot-sd;stm32769disc-boot-sd;Source Files;library;tal"/>
+  <ProjectSessionItem path="stm32769disc-boot-sd;stm32769disc-boot-sd;Source Files;library;tal;board"/>
+  <ProjectSessionItem path="stm32769disc-boot-sd;stm32769disc-boot-sd;Source Files;library;tal;cpu"/>
   <ProjectSessionItem path="stm32769disc-boot-sd;stm32769disc-boot-sd;Source Files;src"/>
  </Project>
  <Register1>
@@ -57,7 +61,9 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="395" useTextEdit="1" path="../src/main.c" left="0" selected="1" top="380" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="29" y="160" useTextEdit="1" path="../library/tal_mb1225/board/mb1225/src/fatfs_diskio.c" left="0" top="141" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="395" useTextEdit="1" path="../src/main.c" left="0" top="375" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="566" useTextEdit="1" path="../library/tal_mb1225/cpu/st/stm32f7xx/src/talcpu.c" left="0" selected="1" top="546" codecName="Default"/>
  </Files>
- <EMStudioWindow activeProject="stm32769disc-boot-sd" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="RAM Debug" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3711"/>
+ <EMStudioWindow activeProject="stm32769disc-boot-sd" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Flash Release" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3199"/>
 </session>

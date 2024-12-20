@@ -25,7 +25,6 @@
       arm_architecture="v7EM"
       arm_core_type="Cortex-M7"
       arm_endian="Little"
-      arm_fp_abi="Hard"
       arm_fpu_type="FPv5-SP-D16"
       arm_interwork="No"
       arm_linker_heap_size="256"
@@ -55,8 +54,6 @@
       linker_scanf_fmt_level="long long"
       linker_scanf_fp_enabled="Yes"
       linker_section_placement_file="$(ProjectDir)/placement_flash.xml"
-      macros="DeviceHeaderFile=$(PackagesDir)/STM32F7xx/CMSIS/Device/Include/stm32f7xx.h;DeviceLibraryIdentifier=;DeviceSystemFile=$(PackagesDir)/STM32F7xx/CMSIS/Device/Source/system_stm32f7xx.c;DeviceVectorsFile=$(PackagesDir)/STM32F7xx/Source/STM32F7x9_v1r2_Vectors.s;DeviceFamily=STM32F7xx;DeviceSubFamily=STM32F769;Target=STM32F769NI;Placement=Flash"
-      package_dependencies="STM32F7xx"
       project_directory=""
       project_type="Executable"
       target_reset_script="Reset();"
@@ -210,6 +207,7 @@
             <file file_name="../common/library/mbedtls/library/oid.c" />
             <file file_name="../common/library/mbedtls/library/pem.c" />
             <file file_name="../common/library/mbedtls/library/pk.c" />
+            <file file_name="../common/library/mbedtls/library/pk_ecc.c" />
             <file file_name="../common/library/mbedtls/library/pk_wrap.c" />
             <file file_name="../common/library/mbedtls/library/pkcs12.c" />
             <file file_name="../common/library/mbedtls/library/pkcs5.c" />

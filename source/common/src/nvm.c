@@ -1,5 +1,5 @@
 /**************************************************************************
-*  Copyright (c) 2019 by Michael Fischer (www.emb4fun.de).
+*  Copyright (c) 2019-2024 by Michael Fischer (www.emb4fun.de).
 *  All rights reserved.
 *
 *  Redistribution and use in source and binary forms, with or without 
@@ -212,9 +212,9 @@ static void ReadNVM (void)
       nvm_IPGet(&IP);
    
       IP.dUse  = NVM_IP_USE_ENABLE;
-      IP.dUse |= ((1 == etc_IPDhcpIsUsed()) ? NVM_IP_USE_DHCP  : 0);
+      IP.dUse |= ((1 == etc_IPDhcpIsUsed()) ? NVM_IP_USE_DHCP : 0);
       IP.dUse |= ((1 == etc_IPTnpIsES())    ? NVM_IP_USE_TNPES : 0);
-      IP.dUse |= ((1 == etc_IPmDNSIsUsed()) ? NVM_IP_USE_MDNS  : 0);
+      IP.dUse |= ((1 == etc_IPmDNSIsUsed()) ? NVM_IP_USE_MDNS : 0);
    
       IP.dIPAddr   = etc_IPAddrGet(ETC_IP_ADDR);
       IP.dNETMask  = etc_IPAddrGet(ETC_IP_MASK);

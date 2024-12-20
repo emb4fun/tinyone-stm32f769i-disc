@@ -248,6 +248,7 @@ static void EthernetInit (void)
    {
       /* mDNS will be started later, if DHCP is bound */
       IP_DHCP_CallbackSet(0, DHCPCallbackBound);
+      //IP_DHCP_TimeoutSet(0, 3000);
       IP_DHCP_Start(0);
    }
    else
@@ -402,7 +403,7 @@ static void OutputUsageInfo (void)
    term_printf("m: output memory info\r\n");
    term_printf("v: output version info\r\n");
    term_printf("x: reboot\r\n");
-   term_printf("1: output network configuration for iface 0\r\n");
+   term_printf("1: output network configuration info\r\n");
 
 #if defined(LWIP_DEBUG)
    term_printf("l: output lwIP statistics\r\n");

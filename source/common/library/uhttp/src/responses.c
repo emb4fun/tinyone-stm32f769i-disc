@@ -167,6 +167,11 @@ const char *HttpResponseText(int code)
     return rp;
 }
 
+int __attribute__((weak)) IP_WEBS_IsRunnungSSL (void)
+{
+    return(0);
+}
+
 void HttpSendStreamHeaderTop(HTTP_STREAM *stream, int status)
 {
     static const char fmt_P[] = "HTTP/%d.%d %d %s\r\nServer: uHTTP\r\n";

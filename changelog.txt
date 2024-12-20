@@ -2,13 +2,18 @@
 * Project: tinyone-stm32f769i-disc
 * Name   : "A small embedded DHCP and SNTP server"
 * Target : STMicroelectronics "32F769IDISCOVERY Discovery kit"
-* Version: 20240102
+* Version: 20241220
 ***************************************************************************
 * Tools  : SEGGER Embedded Studio for ARM v7.32a
 *          STMicroelectronics STMF7xx COU Support Package v3.06
 ***************************************************************************
 * URL    : https://www.emb4fun.de/projects/tone/index.html
 ***************************************************************************
+
+= Version 1.21 / 1.20, 20.12.2024
+   * Updated MbedTLS to v3.6.2.
+   * Updated FatFS to R015a.
+   * Updated lwIP to "lwip-2024-02-19"
 
 = Version 1.20 / 1.20, 02.01.2024
    * Used SEGGER Embedded Studio for ARM v7.32a.

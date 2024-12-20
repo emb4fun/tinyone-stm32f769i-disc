@@ -18,7 +18,6 @@
       arm_architecture="v7EM"
       arm_core_type="Cortex-M7"
       arm_endian="Little"
-      arm_fp_abi="SoftFP"
       arm_fpu_type="FPv5-SP-D16"
       arm_interwork="No"
       arm_linker_heap_size="16"
