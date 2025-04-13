@@ -68,7 +68,7 @@
     <configuration
       Name="Release"
       c_preprocessor_definitions="__RELEASE__"
-      gcc_optimization_level="Level 3" />
+      gcc_optimization_level="Level 2 balanced" />
     <configuration
       Name="SDRAM"
       c_preprocessor_definitions="__SDRAM__"
