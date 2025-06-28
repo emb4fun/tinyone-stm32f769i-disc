@@ -692,30 +692,6 @@ int IP_IF_Start (uint8_t iface)
       /* Bring the interface up. */
       netif_set_up(pNetIf[iface]);
 
-
-#if 0
-{
-      struct netif *netif = pNetIf[iface];
-      ip6_addr_t my_addr;
-
-      IP6_ADDR_PART(&my_addr, 0, 0xFE, 0x80, 0x00, 0x00);
-      IP6_ADDR_PART(&my_addr, 1, 0x00, 0x00, 0x00, 0x00);
-      IP6_ADDR_PART(&my_addr, 2, 0x00, 0x00, 0x00, 0x00);
-      IP6_ADDR_PART(&my_addr, 3, 0x00, 0x00, 0x00, 0x01);
-
-      // Address copy
-      netif->ip6_addr[0].u_addr.ip6.addr[0] = my_addr.addr[0];
-      netif->ip6_addr[0].u_addr.ip6.addr[1] = my_addr.addr[0];
-      netif->ip6_addr[0].u_addr.ip6.addr[2] = my_addr.addr[0];
-      netif->ip6_addr[0].u_addr.ip6.addr[3] = my_addr.addr[0];
-      netif->ip6_addr[0].u_addr.ip6.zone    = my_addr.zone;
-
-      netif_ip6_addr_set_state(netif, 0, IP6_ADDR_TENTATIVE);
-}
-#endif
-
-
-
       Error = 0;
    }
 

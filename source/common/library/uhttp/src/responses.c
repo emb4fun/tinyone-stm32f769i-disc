@@ -174,6 +174,7 @@ int __attribute__((weak)) IP_WEBS_IsRunnungSSL (void)
 
 void HttpSendStreamHeaderTop(HTTP_STREAM *stream, int status)
 {
+    int               is_ssl = 0;
     static const char fmt_P[] = "HTTP/%d.%d %d %s\r\nServer: uHTTP\r\n";
 
     s_printf(stream, fmt_P, HTTP_MAJOR_VERSION, HTTP_MINOR_VERSION, status, HttpResponseText(status));
@@ -185,10 +186,64 @@ void HttpSendStreamHeaderTop(HTTP_STREAM *stream, int status)
         struct lwip_sock *sock = lwip_socket_dbg_get_socket(stream->strm_csock);
         if (sock->conn->ssl != NULL)
         {
-            /* Add HSTS header */ 
-            s_puts("Strict-Transport-Security: max-age=31536000; includeSubDomains\r\n", stream);
+            is_ssl = 1; 
         }
-    }    
+    }
+
+    /*
+     * Security Headers
+     */
+    if (1 == is_ssl)
+    {
+        /* TLS connections */
+        
+        /* HSTS header */ 
+        s_puts("Strict-Transport-Security: max-age=31536000; includeSubDomains\r\n", stream);
+        
+        /* X-Frame-Options */
+        s_puts("X-Frame-Options: SAMEORIGIN\r\n", stream);
+        
+        /* Content-Security-Policy */
+        s_puts("Content-Security-Policy: "
+               "default-src 'self'; "
+               "img-src 'self' data:; "
+               "script-src 'self' 'unsafe-inline'; "
+               "style-src 'self' 'unsafe-inline'; " 
+               "object-src 'none'; "
+               "base-uri 'none'; "
+               "connect-src 'self'\r\n", stream);
+    }
+    else
+    {
+        /* NO TLS connection */
+        
+        /* HSTS header */ 
+        s_puts("Strict-Transport-Security: max-age=0\r\n", stream);
+
+        /* X-Frame-Options */
+        s_puts("X-Frame-Options: DENY\r\n", stream);
+
+        /* Content-Security-Policy */
+        s_puts("Content-Security-Policy: "
+               "frame-ancestors 'none'; "
+               "default-src 'self'; "
+               "img-src 'self' data:; "
+               "script-src 'self' 'unsafe-inline'; "
+               "style-src 'self' 'unsafe-inline'; " 
+               "object-src 'none'; "
+               "base-uri 'none'; "
+               "connect-src 'self'\r\n", stream);
+    }
+    
+    /* X-Content-Type-Options */
+    s_puts("X-Content-Type-Options: nosniff\r\n", stream);
+
+    /* Referrer-Policy */
+    s_puts("Referrer-Policy: no-referrer\r\n", stream);
+    
+    /* Permissions-Policy */
+    s_puts("Permissions-Policy: camera=(), microphone=(), geolocation=()\r\n", stream);
+    
     
 #if !defined(HTTPD_EXCLUDE_DATE)
     {
